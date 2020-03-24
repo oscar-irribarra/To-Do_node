@@ -12,7 +12,6 @@ let cargarDb = () => {
 
 let guardarDb = () => {
   let data = JSON.stringify(arregloTareas);
-
   fs.writeFile('./db/data.json', data, err => {
     if (err) {
       console.log(err);
@@ -38,9 +37,9 @@ let crear = descripcion => {
   if (!arregloTareas.find(x => x.descripcion == descripcion)) {
     arregloTareas.push(tarea);
     guardarDb();
+    return 'la tarea se registro exitosamente.';
   }
-
-  return tarea;
+  return 'La descripcion ingresada ya se encuentra registrada en la base de datos';
 };
 
 let actualizar = (descripcion, estado) => {
@@ -49,17 +48,21 @@ let actualizar = (descripcion, estado) => {
   if (idx >= 0) {
     arregloTareas[idx].estado = estado;
     guardarDb();
+    return 'la tarea se actualizo exitosamente.';
   }
+  return 'La descripcion ingresada no se encuentra registrada en la base de datos';
+
 };
 
 let eliminar = descripcion => {
   cargarDb();
   let idx = arregloTareas.findIndex(x => x.descripcion == descripcion);
-  console.log('idx', idx);
   if (idx >= 0) {
     arregloTareas.splice(idx, 1);
     guardarDb();
+    return 'la tarea se elimino exitosamente.';
   }
+  return 'La descripcion ingresada no se encuentra registrada en la base de datos';
 };
 
 module.exports = {

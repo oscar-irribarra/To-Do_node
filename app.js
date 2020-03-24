@@ -12,10 +12,10 @@ switch (comando) {
   case 'listar':
     let dataListar = listar();
     for (let tarea of dataListar) {
-        console.log('==========Por Hacer=========='.green);
-        console.log(tarea.descripcion);
-        console.log('Estado: ',tarea.estado);
-        console.log('============================='.green);
+      console.log('==========Por Hacer=========='.green);
+      console.log(tarea.descripcion);
+      console.log('Estado: ', tarea.estado);
+      console.log('============================='.green);
     }
     break;
   case 'actualizar':
